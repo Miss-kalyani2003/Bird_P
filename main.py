@@ -1,15 +1,22 @@
-from flask import Flask, request, jsonify,render_template
-
-import os
-from src.utils import load_trained_model, load_class_names, predict_image
-
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
+os.environ["TF_NUM_INTEROP_THREADS"] = "1"
+
+
+from flask import Flask, request, jsonify,render_template
+
+
+from src.utils import load_trained_model, load_class_names, predict_image
+
 
 
 app = Flask(__name__)
 
 # Config
+
 UPLOAD_FOLDER = "uploads"
 MODEL_PATH = "artifacts/parrot_mobilenet_model.keras"
 CLASS_NAMES_PATH = "artifacts/class_names.json"
