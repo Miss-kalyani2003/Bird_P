@@ -20,7 +20,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 model = load_trained_model(MODEL_PATH)
 class_names = load_class_names(CLASS_NAMES_PATH)
 
-@app.route("/")
+@app.route("/api")
 def home():
     return "Parrot Classification API is running"
 
