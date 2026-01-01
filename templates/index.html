@@ -1,31 +1,53 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bird Species Classification</title>
+    <title>ParrotVision AI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="container">
-    <h1>🦜 Bird Species Classification</h1>
-    <p class="subtitle">
-        Upload a bird image to predict its species using a deep learning model
-    </p>
-
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit">Predict</button>
-    </form>
-
-    {% if prediction %}
-    <div class="result">
-        <h2>Prediction Result</h2>
-        <p><strong>Species:</strong> {{ prediction }}</p>
-        <p><strong>Confidence:</strong> {{ "%.2f"|format(confidence) }}%</p>
+<header class="navbar">
+    <div class="logo">🦜 ParrotVision AI</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Model</a>
+        <a href="#">API</a>
+        <a href="#">About</a>
     </div>
-    {% endif %}
-</div>
+</header>
 
+<section class="hero">
+    <div class="hero-text">
+        <h1>AI-Powered Parrot Species Classification</h1>
+        <p>
+            Upload an image and let our deep learning model identify
+            the parrot species with high accuracy.
+        </p>
+    </div>
+
+    <div class="upload-card">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" id="imageInput" required>
+            <button type="submit">Analyze Image</button>
+        </form>
+
+        <div id="preview"></div>
+
+        {% if prediction %}
+        <div class="result">
+            <h3>Prediction Result</h3>
+            <p><strong>Species:</strong> {{ prediction }}</p>
+            <p><strong>Confidence:</strong> {{ "%.2f"|format(confidence) }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ParrotVision AI • Built with Flask & Deep Learning</p>
+</footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
